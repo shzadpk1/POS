@@ -139,12 +139,12 @@ namespace Indotalent.Applications.Warehouses
 
         public Warehouse? GetVendorWarehouse()
         {
-            return _context.Set<Warehouse>().Where(x => x.Name == "Vendor").FirstOrDefault();
+            return _context.Set<Warehouse>().Where(x => x.Name == "Pindi Bhttian (near sharif city, ban road)").FirstOrDefault();
         }
 
         public Warehouse? GetTransferWarehouse()
         {
-            return _context.Set<Warehouse>().Where(x => x.Name == "Transfer").FirstOrDefault();
+            return _context.Set<Warehouse>().Where(x => x.Name == "Transfer Out").FirstOrDefault();
         }
 
         public Warehouse? GetAdjustmentWarehouse()
