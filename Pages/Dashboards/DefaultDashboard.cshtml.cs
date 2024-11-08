@@ -92,7 +92,9 @@ namespace Indotalent.Pages.Dashboards
         public string CardPurchaseQty { get; set; } = string.Empty;
         public string CardPurchaseReturnQty { get; set; } = string.Empty;
         public string CardDeliveryOrderQty { get; set; } = string.Empty;
+        public string TotalPurchase { get; set; } = string.Empty;
         public string CardGoodsReceiveQty { get; set; } = string.Empty;
+        public string TotalSales { get; set; } = string.Empty;
         public string CardTransferOutQty { get; set; } = string.Empty;
         public string CardTransferInQty { get; set; } = string.Empty;
 
@@ -150,6 +152,10 @@ namespace Indotalent.Pages.Dashboards
                 .Where(x => x.ModuleName == nameof(DeliveryOrder) && x.Warehouse!.SystemWarehouse == false && x.Status >= Models.Enums.InventoryTransactionStatus.Confirmed)
                 .Sum(x => x.Movement)
                 .ToString("N2") + " Qty.";
+            TotalPurchase = _purchaseOrderItemService
+                .GetAll()
+                .Sum(x => x.Total.Value)
+                .ToString("N2") + " Pkr.";
 
             CardGoodsReceiveQty = _inventoryTransactionService
                 .GetAll()
@@ -157,6 +163,10 @@ namespace Indotalent.Pages.Dashboards
                 .Where(x => x.ModuleName == nameof(GoodsReceive) && x.Warehouse!.SystemWarehouse == false && x.Status >= Models.Enums.InventoryTransactionStatus.Confirmed)
                 .Sum(x => x.Movement)
                 .ToString("N2") + " Qty.";
+            TotalSales = _salesOrderItemService
+                .GetAll()
+                .Sum(x => x.Total.Value)
+                .ToString("N2") + " Pkr.";
 
             CardTransferOutQty = _inventoryTransactionService
                 .GetAll()
